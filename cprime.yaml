@@ -1,0 +1,43 @@
+config_schema:
+  type: object
+  required:
+    - salesforce_username
+    - salesforce_password
+    - salesforce_token
+  properties:
+    salesforce_username:
+      type: string
+      description: Salesforce username
+    salesforce_password:
+      type: string
+      format: password
+      description: Salesforce password
+    salesforce_token:
+      type: string
+      format: password
+      description: Salesforce security token
+    salesforce_instance_url:
+      type: string
+      description: Salesforce instance URL (optional, defaults to https://login.salesforce.com)
+      default: "https://login.salesforce.com"
+server_name: Salesforce MCP Server
+command: npx
+args:
+  - -y
+  - "@tsmztech/mcp-server-salesforce@latest"
+env:
+  - name: SALESFORCE_CONNECTION_TYPE
+    value: User_Password
+  - name: SALESFORCE_USERNAME
+    value: config.salesforce_username
+  - name: SALESFORCE_PASSWORD
+    value: config.salesforce_password
+  - name: SALESFORCE_TOKEN
+    value: config.salesforce_token
+  - name: SALESFORCE_INSTANCE_URL
+    value: config.salesforce_instance_url
+description: A Salesforce connector MCP Server that enables natural language interactions with Salesforce data and metadata. Query, modify, and manage Salesforce objects, records, and Apex code using everyday language.
+owner: tsmztech
+license: MIT
+package: "@tsmztech/mcp-server-salesforce"
+vendor: tsmztech
