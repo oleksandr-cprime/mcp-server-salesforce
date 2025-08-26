@@ -4,6 +4,7 @@ config_schema:
     - salesforce_username
     - salesforce_password
     - salesforce_token
+    - salesforce_instance_url
   properties:
     salesforce_username:
       type: string
