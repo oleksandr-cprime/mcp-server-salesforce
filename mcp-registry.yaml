@@ -24,8 +24,15 @@ config_schema:
 server_name: Salesforce MCP Server
 command: npx
 args:
-  - -y
-  - "@tsmztech/mcp-server-salesforce@latest"
+  - npm
+  - install
+  - '&&'
+  - npm
+  - run
+  - build
+  - '&&'
+  - node
+  - dist/index.js
 env:
   - name: SALESFORCE_CONNECTION_TYPE
     value: User_Password
