@@ -68,28 +68,9 @@ import {
   handleManageDebugLogs,
   ManageDebugLogsArgs,
 } from './tools/manageDebugLogs.js';
+import { PROMPTS, SYSTEM_INSTRUCTIONS } from './prompts';
 
 dotenv.config();
-
-const PROMPTS = {
-  'system-instructions': {
-    name: 'system-instructions',
-    description: 'Plain instructions to be used as a future system prompt',
-    arguments: [],
-  },
-  'explain-code': {
-    name: 'explain-code',
-    description: 'Explain a code snippet',
-    arguments: [
-      { name: 'code', description: 'Code snippet to explain', required: true },
-      {
-        name: 'language',
-        description: 'Programming language',
-        required: false,
-      },
-    ],
-  },
-};
 
 const server = new Server(
   {
@@ -115,25 +96,7 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
 
   switch (name) {
     case 'system-instructions': {
-      return {
-        description: 'Plain instructions to be used as a future system prompt',
-        messages: [
-          {
-            // "system-like" rules go here as ASSISTANT
-            role: 'assistant',
-            content: {
-              type: 'text',
-              text: [
-                'You are a conventional-commit generator.',
-                'Rules:',
-                '- Concise, descriptive subject (<= 72 chars).',
-                '- Use type(scope): subject format when clear.',
-                '- Optionally include body with rationale and breaking-change notes.',
-              ].join('\n'),
-            },
-          },
-        ],
-      };
+      return SYSTEM_INSTRUCTIONS;
     }
 
     case 'explain-code': {
