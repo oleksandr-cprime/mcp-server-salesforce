@@ -68,7 +68,7 @@ import {
   handleManageDebugLogs,
   ManageDebugLogsArgs,
 } from './tools/manageDebugLogs.js';
-import { PROMPTS, SYSTEM_INSTRUCTIONS } from './prompts';
+import { PROMPTS, SYSTEM_INSTRUCTIONS } from './prompts/index.js';
 
 dotenv.config();
 
